@@ -9,7 +9,7 @@ suite( 'Selection', function() {
 		return vscodeTestContent.setWithSelection( 'foo [bar} baz' )
 			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
 			.then( textEditor => {
-				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo {bar] baz', 'Anchor point is moved to the start' );
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo {bar] baz', 'Anchor point was not moved to the start' );
 			} );
 	} );
 
@@ -17,7 +17,7 @@ suite( 'Selection', function() {
 		return vscodeTestContent.setWithSelection( 'foo {bar] baz' )
 			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
 			.then( textEditor => {
-				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo [bar} baz', 'Anchor point is moved to the end' );
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo [bar} baz', 'Anchor point was not moved to the end' );
 			} );
 	} );
 
@@ -27,7 +27,15 @@ suite( 'Selection', function() {
 		return vscodeTestContent.setWithSelection( contentWithSelection )
 			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
 			.then( textEditor => {
-				assert.equal( vscodeTestContent.getWithSelection( textEditor ), contentWithSelection, 'Selection remains unaffected' );
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), contentWithSelection, 'Selection should remain unaffected' );
+			} );
+	} );
+
+	test( 'it supports multiple selections', () => {
+		return vscodeTestContent.setWithSelection( 'foo [bar} {baz]' )
+			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
+			.then( textEditor => {
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo {bar] [baz}', 'Anchor points were not flipped' );
 			} );
 	} );
 } );

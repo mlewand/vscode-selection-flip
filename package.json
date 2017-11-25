@@ -15,14 +15,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "onCommand:vscodeSelectionFlip.flip"
   ],
   "main": "./extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.sayHello",
-        "title": "Hello World"
+        "command": "vscodeSelectionFlip.flip",
+        "title": "Flip selection anchor"
       }
     ]
   },
