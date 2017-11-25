@@ -24,6 +24,12 @@
         "command": "vscodeSelectionFlip.flip",
         "title": "Flip selection anchor"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "vscodeSelectionFlip.flip",
+        "key": "alt+i"
+      }
     ]
   },
   "scripts": {
