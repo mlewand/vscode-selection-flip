@@ -1,18 +1,33 @@
 /* global suite, test */
 
-//
-// Note: This example test is leveraging the Mocha test framework.
-// Please refer to their documentation on https://mochajs.org/ for help.
-//
+const assert = require( 'assert' ),
+	vscode = require( 'vscode' ),
+	vscodeTestContent = require( 'vscode-test-content' );
 
-// The module 'assert' provides assertion methods from node
-let assert = require( 'assert' );
+suite( 'Selection', function() {
+	test( 'it toggles from end', () => {
+		return vscodeTestContent.setWithSelection( 'foo [bar} baz' )
+			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
+			.then( textEditor => {
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo {bar] baz', 'Anchor point is moved to the start' );
+			} );
+	} );
 
-// Defines a Mocha test suite to group tests of similar kind together
-suite( 'Extension Tests', function() {
-    // Defines a Mocha unit test
-	test( 'Something 1', function() {
-		assert.equal( -1, [ 1, 2, 3 ].indexOf( 5 ) );
-		assert.equal( -1, [ 1, 2, 3 ].indexOf( 0 ) );
+	test( 'it toggles from start', () => {
+		return vscodeTestContent.setWithSelection( 'foo {bar] baz' )
+			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
+			.then( textEditor => {
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), 'foo [bar} baz', 'Anchor point is moved to the end' );
+			} );
+	} );
+
+	test( 'it doesn\'t affect collapsed selection', () => {
+		const contentWithSelection = 'foo ba^r baz';
+
+		return vscodeTestContent.setWithSelection( contentWithSelection )
+			.then( textEditor => vscode.commands.executeCommand( 'vscodeSelectionFlip.flip' ).then( () => textEditor ) )
+			.then( textEditor => {
+				assert.equal( vscodeTestContent.getWithSelection( textEditor ), contentWithSelection, 'Selection remains unaffected' );
+			} );
 	} );
 } );

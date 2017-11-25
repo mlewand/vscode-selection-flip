@@ -37,6 +37,7 @@
     "eslint-config-mlewand-node": "^0.1.2",
     "mocha": "^2.3.3",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.0.0",
+    "vscode-test-content": "^1.2.0"
   }
 }
