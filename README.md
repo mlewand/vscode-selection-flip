@@ -10,7 +10,9 @@ VSCode extensions that allows you to flip over your selection anchor point.
 
 ## Use Case
 
-I sometimes have a need to select whole function and its API docs at once, using keyboard only. Currently I use
+Sometimes I have a need to select whole function and its API docs at once, using keyboard only.
+
+Currently I use a command to expand selection over the block/function but it puts the caret at the end. I need to put it back to beginning so I can continue selection upwards - this is when this extension comes handy.
 
 ## License
 
