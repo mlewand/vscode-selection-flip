@@ -14,6 +14,7 @@
   "categories": [
     "Other"
   ],
+  "keywords": [ "selection", "invert", "flip" ],
   "activationEvents": [
     "onCommand:vscodeSelectionFlip.flip"
   ],
