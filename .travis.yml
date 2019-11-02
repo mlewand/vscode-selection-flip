@@ -3,6 +3,9 @@ sudo: false
 node_js:
   - 9
 
+env:
+  - CODE_VERSION=1.19.0
+
 os:
   - osx
   - linux
