@@ -2,7 +2,7 @@
   "name": "vscode-selection-flip",
   "displayName": "vscode-selection-flip",
   "description": "Extensions allows you to flip over your selection anchor point.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "mlewand",
   "repository": {
     "type": "git",
