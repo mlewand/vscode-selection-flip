@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "ES2018",
         "lib": [
-            "es6"
+            "ES2018"
         ]
     },
     "exclude": [
